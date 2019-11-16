@@ -29,11 +29,7 @@ echo "/dev/sda2    /               ext4      defaults    0 0" > etc/fstab
 echo "/dev/sda3    /home           ext4      defaults    0 2" >> etc/fstab
 echo "/dev/sda1    /boot           ext2      defaults    0 0" >> etc/fstab
 
-
-exit 1
 #Chroot into the system
-
-
 mount -o rbind /dev /mnt/exherbo/dev/
 mount -o bind /sys /mnt/exherbo/sys/
 mount -t proc none /mnt/exherbo/proc/
@@ -45,3 +41,10 @@ source /etc/profile
 export PS1="(chroot) $PS1"
 
 echo "étape : cave sync...(todo)"
+cave sync
+
+#Kernel
+wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.11.tar.xz
+tar xJf linux-5*
+cd linux-5*
+pwd
