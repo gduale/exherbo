@@ -36,15 +36,5 @@ mount -t proc none /mnt/exherbo/proc/
 mount /dev/sda1 /mnt/exherbo/boot/
 mount /dev/sda3 /mnt/exherbo/home/
 cp /etc/resolv.conf /mnt/exherbo/etc/resolv.conf
-env -i TERM=$TERM SHELL=/bin/bash HOME=$HOME $(which chroot) /mnt/exherbo /bin/bash
-source /etc/profile
-export PS1="(chroot) $PS1"
-
-echo "étape : cave sync...(todo)"
-cave sync
-
-#Kernel
-wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.11.tar.xz
-tar xJf linux-5*
-cd linux-5*
-pwd
+cp step2_chroot.sh /mnt/exherbo/
+env -i TERM=$TERM SHELL=/bin/bash HOME=$HOME $(which chroot) /mnt/exherbo /step2_chroot.sh
