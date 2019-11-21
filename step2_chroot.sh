@@ -45,11 +45,12 @@ EOF
 
 #Password
 echo "Set the root password:"
-passwd
+echo -e "root\nroot"|passwd
 
 #Locale
 localedef -i fr_FR -f UTF-8 fr_FR
 echo LANG="fr_FR.UTF-8" > /etc/env.d/99locale
 ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
  
-echo "All is done! You can exit chroot and reboot"
+echo "All is done!"
+reboot
