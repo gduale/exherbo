@@ -37,4 +37,5 @@ mount /dev/sda1 /mnt/exherbo/boot/
 mount /dev/sda3 /mnt/exherbo/home/
 cp /etc/resolv.conf /mnt/exherbo/etc/resolv.conf
 cp /root/exherbo/step2_chroot.sh /mnt/exherbo/
+cp /root/exherbo/kernel.config /mnt/exherbo/
 env -i TERM=$TERM SHELL=/bin/bash HOME=$HOME $(which chroot) /mnt/exherbo /step2_chroot.sh

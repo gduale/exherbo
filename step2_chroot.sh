@@ -11,7 +11,8 @@ cave sync
 wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.12.tar.xz
 tar xJf linux-5*
 cd linux-5.3.12
-make nconfig
+#make nconfig
+cp /kernel.config /linux-5.3.12/.config
 make -j 4
 make modules_install
 cp arch/x86/boot/bzImage /boot/kernel
