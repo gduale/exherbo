@@ -15,8 +15,10 @@ mkfs.ext4 /dev/sda2 #/
 mkfs.ext4 /dev/sda3 #/home
 
 mkdir /mnt/exherbo && mount /dev/sda2 /mnt/exherbo && cd /mnt/exherbo
-curl -O http://dev.exherbo.org/stages/exherbo-x86_64-pc-linux-gnu-current.tar.xz
-curl -O http://dev.exherbo.org/stages/sha1sum
+#curl -O http://dev.exherbo.org/stages/exherbo-x86_64-pc-linux-gnu-current.tar.xz
+curl -O http://127.0.0.1/~gui/exherbo-x86_64-pc-linux-gnu-current.tar.xz
+#curl -O http://dev.exherbo.org/stages/sha1sum
+curl -O http://27.0.0.1/~gui/sha1sum
 grep exherbo-x86_64-pc-linux-gnu-current.tar.xz sha1sum | sha1sum -c
 if [ $? -ne 0 ];then
   echo "sha1sum ERROR"

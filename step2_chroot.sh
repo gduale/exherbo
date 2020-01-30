@@ -8,11 +8,14 @@ echo "étape : cave sync...(todo)"
 cave sync
 
 #Kernel
-wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.12.tar.xz
-tar xJf linux-5*
-cd linux-5.3.12
+KERNEL=linux-5.5
+#wget https://cdn.kernel.org/pub/linux/kernel/v5.x/${KERNEL}.tar.xz
+wget http://127.0.0.1/~gui/${KERNEL}.tar.xz
+tar xJf $KERNEL
+cd $KERNEL
 #make nconfig
-cp /kernel.config /linux-5.3.12/.config
+#cp /kernel.config /linux-5.3.12/.config
+make menuconfig
 make -j 4
 make modules_install
 cp arch/x86/boot/bzImage /boot/kernel
