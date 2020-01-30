@@ -11,7 +11,7 @@ cave sync
 KERNEL=linux-5.5
 #wget https://cdn.kernel.org/pub/linux/kernel/v5.x/${KERNEL}.tar.xz
 wget http://192.168.0.27/~gui/${KERNEL}.tar.xz
-tar xJf $KERNEL
+tar xJf ${KERNEL}*
 cd $KERNEL
 #make nconfig
 #cp /kernel.config /linux-5.3.12/.config
