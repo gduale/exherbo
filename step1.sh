@@ -1,24 +1,33 @@
 #!/bin/bash
 ##Setup Exherbo
 
+function ddsync {
+  sync
+  partprobe /dev/sda
+}
+
 dd='/dev/sda'
 #Eraze disk
+ddsync
 dd if=/dev/zero of=$dd bs=512 count=1
 
 #Make partitions
 echo -e "n\n\n\n\n+500M\nw\n" | fdisk $dd #/boot
+ddsync
 echo -e "n\n\n\n\n+5G\nw\n" | fdisk $dd #/
+ddsync
 echo -e "n\n\n\n\n\nw\n" | fdisk $dd #/home
+ddsync
 
-mkfs.ext2 /dev/sda1 #/boot 
-mkfs.ext4 /dev/sda2 #/
-mkfs.ext4 /dev/sda3 #/home
+mkfs.ext2 -F /dev/sda1 #/boot 
+mkfs.ext4 -F /dev/sda2 #/
+mkfs.ext4 -F /dev/sda3 #/home
 
-mkdir /mnt/exherbo && mount /dev/sda2 /mnt/exherbo && cd /mnt/exherbo
+mkdir -p /mnt/exherbo && mount /dev/sda2 /mnt/exherbo && cd /mnt/exherbo
 #curl -O http://dev.exherbo.org/stages/exherbo-x86_64-pc-linux-gnu-current.tar.xz
-curl -O http://127.0.0.1/~gui/exherbo-x86_64-pc-linux-gnu-current.tar.xz
+curl -O http://192.168.0.27/~gui/exherbo-x86_64-pc-linux-gnu-current.tar.xz
 #curl -O http://dev.exherbo.org/stages/sha1sum
-curl -O http://27.0.0.1/~gui/sha1sum
+curl -O http://192.168.0.27/~gui/sha1sum
 grep exherbo-x86_64-pc-linux-gnu-current.tar.xz sha1sum | sha1sum -c
 if [ $? -ne 0 ];then
   echo "sha1sum ERROR"
