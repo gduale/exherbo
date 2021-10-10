@@ -8,9 +8,9 @@ echo "étape : cave sync...(todo)"
 cave sync
 
 #Kernel
-KERNEL=linux-5.5
+KERNEL=linux-5.14.11
 #wget https://cdn.kernel.org/pub/linux/kernel/v5.x/${KERNEL}.tar.xz
-wget http://192.168.0.27/~gui/${KERNEL}.tar.xz
+wget http://192.168.0.55/~gui/${KERNEL}.tar.xz
 tar xJf ${KERNEL}*
 cd $KERNEL
 #make nconfig
@@ -43,7 +43,7 @@ EOF
 
 #Hostname
 cat<<EOF > /etc/hosts
-127.0.0.1    my-hostname.domain.foo    my-hostname    localhost
+127.0.0.1    exherbo    localhost
 ::1          localhost
 EOF
 
